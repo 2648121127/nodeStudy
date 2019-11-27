@@ -1,0 +1,34 @@
+.card_header{
+	font-weight:500;
+	font-size:1rem;
+	padding:0.3rem;
+	border-bottom: 1px solid #ededed;
+}
+.submin_btn{
+	margin-top:1rem;
+	margin-bottom: 1rem;
+	width:6rem;
+}
+.card_content{
+	width:100%;
+	background: #FFFFFF;
+	padding-bottom: 1rem;;
+}
+
+/*       cordIfo       */
+.card_info_content{
+	background: #ffffff;
+	height:100%;
+	width:100%;
+}
+.card_info_item{
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+	margin-left:0.5rem;
+	margin-right:0.5rem;
+	border-bottom: 1px solid #ededed;
+}
+.cardinfo_text_width{
+	min-width:4.5rem;
+	display: inline-block;
+}

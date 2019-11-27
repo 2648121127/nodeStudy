@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>卡查询详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../lib/weui.min.css">
+		<link rel="stylesheet" href="../../css/jquery-weui.css">
+		<link rel="stylesheet" href="../../css/mian.css">
+		<style>
+			.customer_content{
+				background: #ffffff;
+				height:100%;
+				width:100%;
+			}
+			.customer_box{
+				margin-bottom: 1rem;
+				border-bottom:1px solid #ededed;
+			}
+			.customer_header{
+				font-weight:500;
+				font-size:1rem;
+				padding:0.3rem;
+				border-bottom: 1px solid #ededed;
+			}
+			.customer_item{
+				padding:0.5rem;
+				/* border-bottom: 1px solid #ededed; */
+				display: inline-block;
+				width:40%;
+				/* float:left; */
+			}
+			.customer_text_width{
+				display: inline-block;
+			}
+			#progress{
+				padding:0.5rem;
+			}
+			.weui-progress__bar.cust_progress__bar{
+				height: 1.3rem;
+			}
+			.yijihuo,.tingji,.weijihuo{
+				display: inline-block;
+				width:0.6rem;
+				height:0.6rem;
+				background: #08bb08;
+				
+			}
+			.tingji{
+				background: #F6383A;
+				
+			}
+			.weijihuo{
+				background: #ebebeb;
+			}
+			.dashiboder{
+				overflow: hidden;
+				border-bottom: 1px dashed #ededed;;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="customer_content">
+			<h3 class="customer_header">客户列表</h3>
+			<div class="customer_box">
+				<p style="margin:0.3rem;font-weight: 500;">A客户</p>
+				<div class="dashiboder">
+					<p style="margin:0.3rem;">所属电信卡：
+						<span class="customer_text_width" style="font-size:0.6rem;">(总计:10000张)</span>
+					</p>
+					<!--<div class="customer_item">-->
+						<!--<span class="customer_text_width">总计：</span>-->
+						<!--<span>10000张</span>-->
+					<!--</div>-->
+					<div style="padding-left:1%;width:98%;height:7.5rem;float:left" id="echarts_bar"></div>
+					<!--<div class="weui-progress" id="progress">
+					  <div class="weui-progress__bar cust_progress__bar">
+						<div class="weui-progress__inner-bar js_progress" style="width: 80%;float: left;">80%</div>
+						<div class="weui-progress__inner-bar js_progress" style="width: 10%;float: left;background-color: #F6383A;">10%</div>
+						<span>10%</span>
+					  </div>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width">总计：</span>
+						<span>10000张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="yijihuo"></span>已激活：</span>
+						<span>200张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="tingji"></span>停机：</span>
+						<span>100张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="weijihuo"></span>未激活：</span>
+						<span>50张</span>
+					</div>-->
+				</div>
+				<div class="">
+					<p style="margin:0.3rem;">所属移动卡：</p>
+					<div class="weui-progress" id="progress">
+					  <div class="weui-progress__bar cust_progress__bar">
+						<div class="weui-progress__inner-bar js_progress" style="width: 80%;float: left;">80%</div>
+						<div class="weui-progress__inner-bar js_progress" style="width: 10%;float: left;background-color: #F6383A;">10%</div>
+						<span>10%</span>
+					  </div>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width">总计：</span>
+						<span>10000张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="yijihuo"></span>已激活：</span>
+						<span>200张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="tingji"></span>停机：</span>
+						<span>100张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="weijihuo"></span>未激活：</span>
+						<span>50张</span>
+					</div>
+				</div>
+			</div>
+			<div class="customer_box">
+				<p style="margin:0.3rem;">B客户</p>
+				<div>
+					<p style="margin:0.3rem;">所属电信卡：</p>
+					<div class="weui-progress" id="progress">
+					  <div class="weui-progress__bar cust_progress__bar">
+						<div class="weui-progress__inner-bar js_progress" style="width: 80%;float: left;">80%</div>
+						<div class="weui-progress__inner-bar js_progress" style="width: 10%;float: left;background-color: #F6383A;">10%</div>
+						<span>10%</span>
+					  </div>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width">总计：</span>
+						<span>10000张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="yijihuo"></span>已激活：</span>
+						<span>200张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="tingji"></span>停机：</span>
+						<span>100张</span>
+					</div>
+					<div class="customer_item">
+						<span class="customer_text_width"><span class="weijihuo"></span>未激活：</span>
+						<span>50张</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../lib/jquery-2.1.4.js"></script>
+		<script src="../../lib/fastclick.js"></script>
+		<script src="../../lib/jquery-weui.min.js"></script>
+		<script src="../../lib/echarts.min.js"></script>
+		<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>-->
+
+		<script>
+			$(function(){
+                //获取dom容器
+                var myChart = echarts.init(document.getElementById('echarts_bar'));
+
+                var option = {
+                    title : {
+                        text: '',
+                        subtext: '',
+                        x:'center'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{b} : {c}张 ({d}%)" //{a} <br/>{b} : {c} ({d}%)
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        // left: 'center',
+                        // bottom: 10,
+                        data: ['已激活','停机','未激活','其他']
+                    },
+                    series : [
+                        {
+                            // name: '访问来源',
+                            type: 'pie',
+                            radius : '70%',
+                            center: ['60%', '50%'],
+                            data:[
+                                {value:335, name:'已激活'},
+                                {value:310, name:'停机'},
+                                {value:234, name:'未激活'},
+                                {value:135, name:'其他'}
+                            ],
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            },
+                            // 设置值域的那指向线
+                            labelLine: {
+                                normal: {
+                                    show: true,   // show设置线是否显示，默认为true，可选值：true ¦ false
+                                    length:0.01
+
+                                }
+                            },
+                            // 设置值域的标签
+                            label: {
+                                normal: {
+                                    position: 'inner',  // 设置标签位置，默认在饼状图外 可选值：'outer' ¦ 'inner（饼状图上）'
+                                    // formatter: '{a} {b} : {c}个 ({d}%)'   设置标签显示内容 ，默认显示{b}
+                                    // {a}指series.name  {b}指series.data的name
+                                    // {c}指series.data的value  {d}%指这一部分占总数的百分比
+                                    formatter: '{c}'
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            })
+		</script>
+	</body>
+</html>

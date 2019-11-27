@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>流量池</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../lib/weui.min.css">
+		<link rel="stylesheet" href="../../css/jquery-weui.css">
+		<link rel="stylesheet" href="../../css/mian.css">
+		<style>
+			#card_before:before{
+				border:none
+			}
+			.poolInfo_content{
+				background: #ffffff;
+				height:100%;
+				width:100%;
+			}
+			.poolInfo_box{
+				margin-bottom: 1rem;
+			}
+			.poolInfo_header{
+				font-weight:500;
+				font-size:1rem;
+				padding:0.3rem;
+				border-bottom: 1px solid #ededed;
+			}
+			.poolInfo_item{
+				padding-top:0.5rem;
+				padding-bottom:0.5rem;
+				margin-left:0.5rem;
+				margin-right:0.5rem;
+				border-bottom: 1px solid #ededed;
+			}
+			.poolInfo_text_width{
+				min-width:4.5rem;
+				display: inline-block;
+			}
+			#progress{
+				padding:0.5rem;
+			}
+			.weui-progress__bar.cust_progress__bar{
+				height: 1.3rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="poolInfo_content">
+			<h3 class="poolInfo_header">池A使用情况</h3>
+			<div class="poolInfo_box">
+				<div id="echartsBar" style="width: 98%;height: 2.5rem"></div>
+				<!--<div class="weui-progress" id="progress">
+				  <div class="weui-progress__bar cust_progress__bar">
+					<div class="weui-progress__inner-bar js_progress" style="width: 80%;float: left;">已使用80%</div>
+				  </div>
+				</div>-->
+				<div class="poolInfo_item">
+					<span class="poolInfo_text_width">已使用流量：</span>
+					<span>11G</span>
+				</div>
+				<div class="poolInfo_item">
+					<span class="poolInfo_text_width">剩余：</span>
+					<span>200G</span>
+				</div>
+				<div class="poolInfo_item">
+					<span class="poolInfo_text_width">卡总数：</span>
+					<span>111</span>
+				</div>
+				<div class="poolInfo_item">
+					<span class="poolInfo_text_width">开卡数：</span>
+					<span>电信</span>
+				</div>
+				<div class="poolInfo_item">
+					<span class="poolInfo_text_width">停机数：</span>
+					<span>123456</span>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../../lib/jquery-2.1.4.js"></script>
+		<script src="../../lib/fastclick.js"></script>
+		<script src="../../lib/jquery-weui.min.js"></script>
+		<script src="../../lib/echarts.min.js"></script>
+		<script>
+            var myProgress = echarts.init(document.getElementById('echartsBar'));// 初始化echarts实例
+            myProgress.setOption(// 通过setOption来生成柱状图
+                {
+                    grid: {   // 直角坐标系内绘图网格
+                        left: '10',  //grid 组件离容器左侧的距离,
+                                     //left的值可以是80这样具体像素值，
+                        //也可以是'80%'这样相对于容器高度的百分比
+                        top: '10',
+                        right: '10',
+                        bottom: '0',
+                        containLabel: true   //gid区域是否包含坐标轴的刻度标签。为true的时候，
+                        // left/right/top/bottom/width/height决定的是包括了坐标轴标签在内的
+                        //所有内容所形成的矩形的位置.常用于【防止标签溢出】的场景
+                    },
+                    xAxis: {  //直角坐标系grid中的x轴,
+                        //一般情况下单个grid组件最多只能放上下两个x轴,
+                        //多于两个x轴需要通过配置offset属性防止同个位置多个x轴的重叠。
+                        type: 'value',//坐标轴类型,分别有：
+                                      //'value'-数值轴；'category'-类目轴;
+                                      //'time'-时间轴;'log'-对数轴
+                        splitLine: {show: false},//坐标轴在 grid 区域中的分隔线
+                        axisLabel: {show: false},//坐标轴刻度标签
+                        axisTick: {show: false},//坐标轴刻度
+                        axisLine: {show: false},//坐标轴轴线
+                    },
+                    yAxis: {
+                        type: 'category',
+                        axisTick: {show: false},
+                        axisLine: {show: false},
+                        axisLabel: {
+                            color: 'black',
+                            fontSize: 14
+                        },
+                        data: []//类目数据，在类目轴（type: 'category'）中有效。
+                        //如果没有设置 type，但是设置了axis.data,则认为type 是 'category'。
+                    },
+                    series: [//系列列表。每个系列通过 type 决定自己的图表类型
+                        {
+                            name: '%',//系列名称
+                            type: 'bar',//柱状、条形图
+                            barWidth: 19,//柱条的宽度,默认自适应
+                            data: [20],//系列中数据内容数组
+                            label: { //图形上的文本标签
+                                show: true,
+                                position: 'right',//标签的位置
+                                offset: [0,-16],  //标签文字的偏移，此处表示向上偏移40
+                                formatter: '{c}{a}',//标签内容格式器 {a}-系列名,{b}-数据名,{c}-数据值
+                                color: 'black',//标签字体颜色
+                                fontSize: 14  //标签字号
+                            },
+                            itemStyle: {//图形样式
+                                normal: {  //normal 图形在默认状态下的样式;
+                                    //emphasis图形在高亮状态下的样式
+                                    barBorderRadius: 10,//柱条圆角半径,单位px.
+                                                        //此处统一设置4个角的圆角大小;
+                                    //也可以分开设置[10,10,10,10]顺时针左上、右上、右下、左下
+                                    color: new echarts.graphic.LinearGradient(
+                                        0, 0, 1, 0,
+                                        [{
+                                            offset: 0,
+                                            color: '#22B6ED'
+                                        },
+                                            {
+                                                offset: 1,
+                                                color: '#3FE279'
+                                            }
+                                        ]
+                                    )
+                                }
+                            },
+                            zlevel:1//柱状图所有图形的 zlevel 值,
+                                    //zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面
+                        },
+                        {
+                            name: '进度条背景',
+                            type: 'bar',
+                            barGap: '-100%',//不同系列的柱间距离，为百分比。
+                            // 在同一坐标系上，此属性会被多个 'bar' 系列共享。
+                            // 此属性应设置于此坐标系中最后一个 'bar' 系列上才会生效，
+                            //并且是对此坐标系中所有 'bar' 系列生效。
+                            barWidth: 19,
+                            data: [100],
+                            color: '#2a3987',//柱条颜色
+                            itemStyle: {
+                                normal: {
+                                    barBorderRadius: 10
+                                }
+                            }
+                        }
+                    ]
+                }
+            )
+		</script>
+	</body>
+</html>
