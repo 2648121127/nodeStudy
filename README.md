@@ -1,3 +1,3 @@
 # nodeStudy
-node study notes
+node.js
 
