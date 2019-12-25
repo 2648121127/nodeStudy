@@ -24,11 +24,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="05router_express_model.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="05router_express_model.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/08router/05router_express_model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+            <state relative-caret-position="456">
+              <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="url1.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/01http和url服务/url1.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -70,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/http1/http1.js" />
         <option value="$PROJECT_DIR$/http1/url1.js" />
         <option value="$PROJECT_DIR$/commonjs/tool.js" />
         <option value="$PROJECT_DIR$/commonjs/commonjs01.js" />
@@ -121,6 +130,7 @@
         <option value="$PROJECT_DIR$/08router/model/express_router.js" />
         <option value="$PROJECT_DIR$/08router/views/form.ejs" />
         <option value="$PROJECT_DIR$/08router/05router_express_model.js" />
+        <option value="$PROJECT_DIR$/01http和url服务/url1.js" />
       </list>
     </option>
   </component>
@@ -172,45 +182,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="nodeVideoNotes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nodeVideoNotes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="02commonjs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="07get-post-ejs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="08router" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="08router" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodeSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodeSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="08router" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nodeVideoNotes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nodeVideoNotes" type="462c0819:PsiDirectoryNode" />
+              <item name="01http和url服务" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -291,14 +279,16 @@
       <workItem from="1571216501335" duration="25701000" />
       <workItem from="1573088411745" duration="26253000" />
       <workItem from="1574826353335" duration="221000" />
+      <workItem from="1577266265086" duration="71000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52175000" />
+    <option name="totallyTimeSpent" value="52246000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23120567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -543,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01http和url服务/url1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/02commonjs/commonjs01.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -648,8 +631,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08router/05router_express_model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        <state relative-caret-position="456">
+          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01http和url服务/url1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding />
         </state>
       </provider>
