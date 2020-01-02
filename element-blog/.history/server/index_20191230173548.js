@@ -47,6 +47,7 @@ app.delete('api/acticle/:id',async (req,res)=>{
 //文章详情
 app.get('/api/acticle/:id',async (req,res)=>{
     const acticle = Acticle.findById(req.params.id);
+    console.log(acticle)
     res.send(acticle);
 })
 
@@ -57,5 +58,5 @@ app.put('/api/acticle/:id',async (req,res)=>{
 })
 
 app.listen(3001,()=>{
-    console.log('http://localhost:3001启动成功！')
+    console.log('http://localhost:3001')
 });

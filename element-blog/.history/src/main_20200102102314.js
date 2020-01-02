@@ -4,12 +4,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import router from './router'
 //引入markdown编辑器
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-// use
-Vue.use(mavonEditor)
+import mavonEditor from 'mavon-editor';
 
-Vue.use(ElementUI);
+// use
+// Vue.use(mavonEditor)
+
+Vue.use(ElementUI, mavonEditor);
 
 Vue.config.productionTip = false
 

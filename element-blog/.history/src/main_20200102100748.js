@@ -4,8 +4,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import router from './router'
 //引入markdown编辑器
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+import mavonEditor from 'mavon-editor';
+
 // use
 Vue.use(mavonEditor)
 

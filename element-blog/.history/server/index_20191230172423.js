@@ -4,7 +4,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cors')());
-app.use(express.json()); //让express识别客户端传过来的json
+// app.use(express.json()); //让express识别客户端传过来的json
 
 const mongoose = require('mongoose');
 
@@ -57,5 +57,5 @@ app.put('/api/acticle/:id',async (req,res)=>{
 })
 
 app.listen(3001,()=>{
-    console.log('http://localhost:3001启动成功！')
+    console.log('http://localhost:3001')
 });
