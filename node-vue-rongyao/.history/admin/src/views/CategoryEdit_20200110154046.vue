@@ -33,7 +33,7 @@
             async save(){
                 this.$http.post('categorise',this.formData).then(res=>{
                     console.log(res)
-                    this.$router.push('categories/list');
+                    // this.$router.push('categories/list');
                     this.message({
                         type:'success',
                         message:'保存成功'

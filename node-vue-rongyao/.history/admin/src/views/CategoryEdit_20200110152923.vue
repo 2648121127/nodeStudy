@@ -6,7 +6,7 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-            <el-form label-width="120px" @submit.native.prevent="save">
+            <el-form label-width="120px" @submit.native.passive="save">
                 <el-form-item label="名称">
                     <el-input v-model="formData.name"></el-input>
                 </el-form-item>
