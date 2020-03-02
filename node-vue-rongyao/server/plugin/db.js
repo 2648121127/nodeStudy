@@ -5,7 +5,7 @@
  * @Last Modified time: 2020-01-10 17:37:19
  */
 
- module.exports = app=>{
+ module.exports = app =>{
     const mongoose = require('mongoose');
     mongoose.connect('mongodb://127.0.0.1:27017/node-vue-rongyao',{
         useNewUrlParser:true,
