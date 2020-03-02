@@ -31,6 +31,7 @@
         },
         methods:{
             save(){
+
                 console.log(11111)
                 this.$http.post('categorise',this.formData).then(res=>{
                     console.log(res)
