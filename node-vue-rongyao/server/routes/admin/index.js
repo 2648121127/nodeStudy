@@ -28,7 +28,7 @@ module.exports = app =>{
     })
     //获取全部
     router.get('/categories',async (req,res) =>{
-      const items = await Category.find().limit(10);
+      const items = await Category.find().populate('parent').limit(10);  //关联上级分类，返回上级分类的对象
       res.send(items);
     })
     //根据id获取
