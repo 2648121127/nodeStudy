@@ -6,35 +6,47 @@
  */
 module.exports = app =>{
     const express = require('express');
-    const router = express.Router();
-    const Category = require('../../models/Category')
+    const router = express.Router({
+      mergeParams:true,
+    }); //父级路由合并到子级路由
+    // const Category = require('../../models/Category')  //写在中间件里，被替代了
 
     //创建数据
-    router.post('/categories',async (req,res) =>{
-      const model = await Category.create(req.body);
+    router.post('/',async (req,res) =>{
+      const model = await req.Model.create(req.body);
       res.send(model);
     })
     //更新数据
-    router.put('/categories/:id',async (req,res) =>{ //用put 或者 post都可以，前端后端统一就行了
-      const model = await Category.findByIdAndUpdate(req.params.id,req.body);
+    router.put('/:id',async (req,res) =>{ //用put 或者 post都可以，前端后端统一就行了
+      const model = await req.Model.findByIdAndUpdate(req.params.id,req.body);
       res.send(model);
     })
     //删除数据
-    router.delete('/categories/:id',async (req,res) =>{
-      await Category.findByIdAndDelete(req.params.id,req.body);
+    router.delete('/:id',async (req,res) =>{
+      await req.Model.findByIdAndDelete(req.params.id,req.body);
       res.send({
         success:true
       });
     })
     //获取全部
-    router.get('/categories',async (req,res) =>{
-      const items = await Category.find().populate('parent').limit(10);  //关联上级分类，返回上级分类的对象
+    router.get('/',async (req,res) =>{
+      const queryOption= {};
+      if(req.Model.modelName == "Category"){
+        queryOption.populate = "parent";
+      }
+      // const items = await req.Model.find().populate('parent').limit(10);  //关联上级分类，返回上级分类的对象
+      const items = await req.Model.find().setOptions(queryOption).limit(10);  //关联上级分类，返回上级分类的对象
       res.send(items);
     })
     //根据id获取
-    router.get('/categories/:id',async (req,res) =>{
-      const model = await Category.findById(req.params.id)
+    router.get('/:id',async (req,res) =>{
+      const model = await req.Model.findById(req.params.id)
       res.send(model);
     })
-    app.use('/admin/api',router)
+    app.use('/admin/api/rest/:resource',async(req,res,next) => { //添加中间件
+      const modelName = require('inflection').classify(req.params.resource);  //使用inflection插件
+      req.Model = require(`../../models/${modelName}`);  //将Model挂载在req上
+      next();
+    }, router)
+    
 }
