@@ -9,6 +9,8 @@
  const app = express();
  app.use(require('cors')());
  app.use(express.json())
+ //静态文件托管,让uploads里面的文件都可以通过/uploads来访问
+ app.use("/uploads",express.static(__dirname+'/uploads'))
 
  require('./plugin/db')(app);
  require('./routes/admin')(app);

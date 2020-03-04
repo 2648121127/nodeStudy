@@ -48,5 +48,17 @@ module.exports = app =>{
       req.Model = require(`../../models/${modelName}`);  //将Model挂载在req上
       next();
     }, router)
+
+    //图片上传    因为跟上面不同一个路由，所以用app
+    //引入中间件multer，处理上传数据
+    const multer = require("multer");
+    const upload = multer({dest:__dirname + '/../../uploads'})
+
+    app.post("/admin/api/upload",upload.single('file'),async (req,res) => {
+      const file = req.file;
+      file.url = `http://localhost:3000/uploads/${file.filename}`;
+      res.send(file);
+    })
+
     
 }
