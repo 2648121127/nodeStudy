@@ -9,7 +9,7 @@
  const app = express();
 
  //（这里是要在token处使用）给全局加个属性
- app.set('secret','zhisuibiansheding');//添加token的时候，正常的是要把这个值添加到环境中去，不应该保存在代码里的
+ app.set('secret','zhizhisuibiansheding');//添加token的时候，正常的是要把这个值添加到环境中去，不应该保存在代码里的
 
  app.use(require('cors')());
  app.use(express.json())

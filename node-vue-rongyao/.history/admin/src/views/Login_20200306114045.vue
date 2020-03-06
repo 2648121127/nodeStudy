@@ -31,14 +31,8 @@ export default{
     },
     methods: {
         async login(){
-            const res = await this.$http.post("login",this.model);
-            localStorage.token = res.data.token; // 浏览器关掉了还有，只要域名不变  注：localStorage.set('token',res.data.token)
-            // sessionStorage.token = res.data.token; //浏览器关掉就没了
-            this.$router.push("/");
-            this.$message({
-                type:'success',
-                message:'登陆成功'
-            })
+            const res = this.$http.post("login",this.model)
+            console.log(res.data)
         }
     }
 }

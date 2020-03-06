@@ -2,7 +2,7 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-06 17:30:23
+ * @Last Modified time: 2020-03-06 17:26:34
  */
 module.exports = app =>{
     const express = require('express');
@@ -36,9 +36,7 @@ module.exports = app =>{
     //获取全部
     router.get('/',async (req,res,next) => {//添加中间件
       const token = String(req.headers.authorization || '').split(' ').pop(); //pop获取后面的那个值
-      HttpAssert(token,401,'请先登录'); //没有token
       const {id} = jwt.verify(token,app.get('secret'))  //verify验证并验证对错  decode解开，但不会验证 
-      HttpAssert(id,401,'请先登录');  //无效token
       req.user = await AdminUser.findById(id);
       HttpAssert(req.user,401,'请先登录');
       await next();

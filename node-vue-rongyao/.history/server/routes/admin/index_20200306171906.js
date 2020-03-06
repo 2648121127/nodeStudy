@@ -2,7 +2,7 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-06 17:30:23
+ * @Last Modified time: 2020-03-06 17:16:46
  */
 module.exports = app =>{
     const express = require('express');
@@ -36,11 +36,8 @@ module.exports = app =>{
     //获取全部
     router.get('/',async (req,res,next) => {//添加中间件
       const token = String(req.headers.authorization || '').split(' ').pop(); //pop获取后面的那个值
-      HttpAssert(token,401,'请先登录'); //没有token
       const {id} = jwt.verify(token,app.get('secret'))  //verify验证并验证对错  decode解开，但不会验证 
-      HttpAssert(id,401,'请先登录');  //无效token
       req.user = await AdminUser.findById(id);
-      HttpAssert(req.user,401,'请先登录');
       await next();
     },async (req,res) =>{
       const queryOption= {};
@@ -85,18 +82,17 @@ module.exports = app =>{
       //     message:'用户不存在'
       //   })
       // }
-      
-      HttpAssert(user,422,'用户不存在');
+      //用assert代替
+      HttpAssert(user,422,'用户不存在')
 
       //2.校验密码
 
       const isValid = require('bcryptjs').compareSync(password,user.password); // compareSync比较这明文和密文是否相同  password明文，用户提交上来的密码  user.password密文，加密后的密码，数据库获取的到的
-      // if(!isValid){
-      //   return res.status(422).send({
-      //     message:'密码错误'
-      //   })
-      // }
-      HttpAssert(isValid,422,'密码错误');
+      if(!isValid){
+        return res.status(422).send({
+          message:'密码错误'
+        })
+      }
 
       //3.返回token
       //首先安装jsonwebtoken模块，做web的token验证  npm i jsonwebtoken  ,然后引用 const jwt = require('jsonwebtoken');
@@ -106,7 +102,7 @@ module.exports = app =>{
 
     //错误处理函数（使用了http-assert模块后，需要捕获错误信息返回错误提示给前端）
     app.use(async (err,req,res,next)=>{
-      res.status(err.statusCode || 500).send({
+      res.status(err.statusCode).send({
         message:err.message,
       })
     })

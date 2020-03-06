@@ -2,15 +2,10 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-06 17:30:23
+ * @Last Modified time: 2020-03-06 13:50:27
  */
 module.exports = app =>{
     const express = require('express');
-    const jwt = require('jsonwebtoken');
-    const HttpAssert = require('http-assert'); 
-
-    const AdminUser = require("../../models/AdminUser");
-    
     const router = express.Router({
       mergeParams:true,
     }); //父级路由合并到子级路由
@@ -34,15 +29,7 @@ module.exports = app =>{
       });
     })
     //获取全部
-    router.get('/',async (req,res,next) => {//添加中间件
-      const token = String(req.headers.authorization || '').split(' ').pop(); //pop获取后面的那个值
-      HttpAssert(token,401,'请先登录'); //没有token
-      const {id} = jwt.verify(token,app.get('secret'))  //verify验证并验证对错  decode解开，但不会验证 
-      HttpAssert(id,401,'请先登录');  //无效token
-      req.user = await AdminUser.findById(id);
-      HttpAssert(req.user,401,'请先登录');
-      await next();
-    },async (req,res) =>{
+    router.get('/',async (req,res) =>{
       const queryOption= {};
       if(req.Model.modelName == "Category"){
         queryOption.populate = "parent";
@@ -77,38 +64,19 @@ module.exports = app =>{
     app.post("/admin/api/login",async(req,res)=>{
       const {username,password} = req.body;
       //1.根据用户名查找用户
-      // const user =  await AdminUser.findOne({username:username}) // {username:username} == {username};
-      const user =  await AdminUser.findOne({username}).select('+password'); //因为在编辑的接口写了默认不查询password字段，这里需要，所以要加上 .select('+password') 否则password返回会为空
-      
-      // if(!user){
-      //   return res.status(422).send({
-      //     message:'用户不存在'
-      //   })
-      // }
-      
-      HttpAssert(user,422,'用户不存在');
+      const AdminUser = require("../../models/AdminUser");
+      const user =  await AdminUser.findOne({username});
+      // const user =  await AdminUser.findOne({username:username});
+      if(!user){
+        return res.status(422).send({
+          message:'用户不存在'
+        })
+      }
 
       //2.校验密码
 
-      const isValid = require('bcryptjs').compareSync(password,user.password); // compareSync比较这明文和密文是否相同  password明文，用户提交上来的密码  user.password密文，加密后的密码，数据库获取的到的
-      // if(!isValid){
-      //   return res.status(422).send({
-      //     message:'密码错误'
-      //   })
-      // }
-      HttpAssert(isValid,422,'密码错误');
-
       //3.返回token
-      //首先安装jsonwebtoken模块，做web的token验证  npm i jsonwebtoken  ,然后引用 const jwt = require('jsonwebtoken');
-      const token = jwt.sign({id:user._id},app.get('secret')) //只能传一个参数，这里的get跟路由的get其实名字是冲突了的（重名了），这里通过参数名来确定是定义路由还是获取配置
-      res.send({token});
     })
 
-    //错误处理函数（使用了http-assert模块后，需要捕获错误信息返回错误提示给前端）
-    app.use(async (err,req,res,next)=>{
-      res.status(err.statusCode || 500).send({
-        message:err.message,
-      })
-    })
     
 }
