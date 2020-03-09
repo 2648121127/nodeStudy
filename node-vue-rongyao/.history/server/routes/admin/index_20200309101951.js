@@ -2,21 +2,19 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-09 10:49:52
+ * @Last Modified time: 2020-03-09 10:18:29
  */
 module.exports = app =>{
     const express = require('express');
+    const jwt = require('jsonwebtoken');
+    const HttpAssert = require('http-assert'); 
+
+    const AdminUser = require("../../models/AdminUser");
     
     const router = express.Router({
       mergeParams:true,
     }); //父级路由合并到子级路由
-  
-
-    //登录中间件
-    const authMiddleware = require('../../middleware/auth');  //封装成了函数，所以调用的时候需要用函数的使用方法，加上括号
-    //自动获取模型中间件
-    const resourceMiddelware = require('../../middleware/resource');//封装成了函数
-
+    // const Category = require('../../models/Category')  //写在中间件里，被替代了
 
     //创建数据
     router.post('/',async (req,res) =>{
@@ -50,15 +48,26 @@ module.exports = app =>{
       const model = await req.Model.findById(req.params.id)
       res.send(model);
     })
-
-    app.use('/admin/api/rest/:resource',authMiddleware(), resourceMiddelware(),router)
+    app.use('/admin/api/rest/:resource',async (req,res,next) => {//添加中间件
+      const token = String(req.headers.authorization || '').split(' ').pop(); //pop获取后面的那个值
+      HttpAssert(token,401,'请先登录'); //没有token
+      const {id} = jwt.verify(token,app.get('secret'))  //verify验证并验证对错  decode解开，但不会验证 
+      HttpAssert(id,401,'请先登录');  //无效token
+      req.user = await AdminUser.findById(id);
+      HttpAssert(req.user,401,'请先登录');
+      await next();
+    },async(req,res,next) => { //添加自动获取模型中间件
+      const modelName = require('inflection').classify(req.params.resource);  //使用inflection插件
+      req.Model = require(`../../models/${modelName}`);  //将Model挂载在req上
+      next();
+    }, router)
 
     //图片上传    因为跟上面不同一个路由，所以用app
     //引入中间件multer，处理上传数据
     const multer = require("multer");
     const upload = multer({dest:__dirname + '/../../uploads'})
 
-    app.post("/admin/api/upload",authMiddleware(),upload.single('file'),async (req,res) => {
+    app.post("/admin/api/upload",upload.single('file'),async (req,res) => {
       const file = req.file;
       file.url = `http://localhost:3000/uploads/${file.filename}`;
       res.send(file);

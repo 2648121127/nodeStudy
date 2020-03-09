@@ -2,7 +2,7 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-09 10:49:52
+ * @Last Modified time: 2020-03-09 10:49:10
  */
 module.exports = app =>{
     const express = require('express');
@@ -10,7 +10,7 @@ module.exports = app =>{
     const router = express.Router({
       mergeParams:true,
     }); //父级路由合并到子级路由
-  
+    // const Category = require('../../models/Category')  //写在中间件里，被替代了
 
     //登录中间件
     const authMiddleware = require('../../middleware/auth');  //封装成了函数，所以调用的时候需要用函数的使用方法，加上括号

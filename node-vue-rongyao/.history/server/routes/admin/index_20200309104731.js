@@ -2,7 +2,7 @@
  * @Author: JianMo 
  * @Date: 2020-01-06 11:30:39 
  * @Last Modified by: author
- * @Last Modified time: 2020-03-09 10:49:52
+ * @Last Modified time: 2020-03-09 10:47:31
  */
 module.exports = app =>{
     const express = require('express');
@@ -10,12 +10,12 @@ module.exports = app =>{
     const router = express.Router({
       mergeParams:true,
     }); //父级路由合并到子级路由
-  
+    // const Category = require('../../models/Category')  //写在中间件里，被替代了
 
     //登录中间件
     const authMiddleware = require('../../middleware/auth');  //封装成了函数，所以调用的时候需要用函数的使用方法，加上括号
-    //自动获取模型中间件
-    const resourceMiddelware = require('../../middleware/resource');//封装成了函数
+    //添加自动获取模型中间件
+    const resourceMiddelware = require('../../middleware/resource');
 
 
     //创建数据
@@ -51,14 +51,14 @@ module.exports = app =>{
       res.send(model);
     })
 
-    app.use('/admin/api/rest/:resource',authMiddleware(), resourceMiddelware(),router)
+    app.use('/admin/api/rest/:resource',authMiddleware, resourceMiddelware,router)
 
     //图片上传    因为跟上面不同一个路由，所以用app
     //引入中间件multer，处理上传数据
     const multer = require("multer");
     const upload = multer({dest:__dirname + '/../../uploads'})
 
-    app.post("/admin/api/upload",authMiddleware(),upload.single('file'),async (req,res) => {
+    app.post("/admin/api/upload",authMiddleware,upload.single('file'),async (req,res) => {
       const file = req.file;
       file.url = `http://localhost:3000/uploads/${file.filename}`;
       res.send(file);
