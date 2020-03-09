@@ -133,9 +133,6 @@ const router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    if(!to.meta.isPublick && !localStorage.token){
-        return next('/login');
-    }
     console.log(to.meta);
     next()
 })

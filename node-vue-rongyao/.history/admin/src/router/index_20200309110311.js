@@ -26,7 +26,6 @@ const routes = [
     {
         path:'/login',
         component:Login,
-        meta: { isPublick:true },  //一般做路有限制是给全部路路由加参数，反过来给登录加一个不用登录的权限也可以
     },
     {
         path: '/',
@@ -127,17 +126,11 @@ const routes = [
     }
 ]
 
-const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
-})
-router.beforeEach((to, from, next) => {
-    if(!to.meta.isPublick && !localStorage.token){
-        return next('/login');
-    }
-    console.log(to.meta);
-    next()
-})
-export default router
+// const router = new VueRouter({
+//     mode: 'history',
+//     base: process.env.BASE_URL,
+//     routes
+// })
+
+export default routes
 
