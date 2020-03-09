@@ -14,13 +14,13 @@ Vue.prototype.$http = http
 Vue.mixin({ //设定全局调用的数据或方法
     computed: {
         uploadUrl(){
-            return this.$http.defaults.baseURL+'/upload';
+            return a
         }
     },
     methods:{
         getAuthHeaders(){ //设置全局上传文件请求头
             return {
-                Authorization:`Bearer ${localStorage.token || ''}`
+                Authoriztion:`Bearer ${localStorage.token || ''}`
             }
         }
     }

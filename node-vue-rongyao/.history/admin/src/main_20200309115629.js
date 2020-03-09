@@ -20,7 +20,7 @@ Vue.mixin({ //设定全局调用的数据或方法
     methods:{
         getAuthHeaders(){ //设置全局上传文件请求头
             return {
-                Authorization:`Bearer ${localStorage.token || ''}`
+                Authoriztion:`Bearer ${localStorage.token || ''}`
             }
         }
     }

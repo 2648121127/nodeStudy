@@ -24,7 +24,7 @@
                                 <el-upload
                                     class="avatar-uploader"
                                     :action="uploadUrl"
-                                    :headers="getAuthHeaders()"
+                                    :header="getAuthHeaders"
                                     :on-success="res=>$set(item,'image',res.url)"
                                     >
                                     <img v-if="item.image" :src="item.image" class="avatar">
