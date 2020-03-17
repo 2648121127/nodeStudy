@@ -15,12 +15,6 @@ const routes = [
         name: 'home',
         component: () => import('../views/Home.vue'),
       },
-      {
-        path: '/article/:id',
-        name: 'article',
-        component: () => import('../views/Article.vue'),
-        props:true,
-      },
     ]
   },
   // {

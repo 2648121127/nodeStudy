@@ -130,9 +130,9 @@ module.exports = app => {
     })
 
     //文章详情
-    router.get('/articles/:id', async (req, res) => {
+    router.get('/articles/:id',await (req,res) =>{
         const data = await Article.findById(req.params.id)
-        res.send(data)
+        res.send(data);
     })
 
     app.use('/web/api', router)

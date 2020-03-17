@@ -63,7 +63,7 @@
         <!--组件里的solt的name是items，所以这里的也是items -->
         <router-link 
         tag="div" 
-        :to="`/article/${news._id}`"
+        :to="`/arcticle/${news._id}`"
         class="py-2 d-flex" 
         v-for="(news,i) in category.newsList" :key="i">
           <span class="text-info">[{{news.categoryName}}]</span>
