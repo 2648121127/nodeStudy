@@ -24,7 +24,7 @@
                                 <el-upload
                                     class="avatar-uploader"
                                     :action="uploadUrl"
-                                    :header="getAuthHeaders"
+                                    :headers="getAuthHeaders()"
                                     :on-success="res=>$set(item,'image',res.url)"
                                     >
                                     <img v-if="item.image" :src="item.image" class="avatar">
@@ -61,10 +61,10 @@
             this.id && this.fetch();
         },
         methods:{
-            //图片上传
-            afterUpload(res){
-                this.$set(this.model,'image',res.url)
-            },
+            //图片上传成功 on-success
+            // afterUpload(res){
+            //     this.$set(this.model,'image',res.url)
+            // },
             save(){
                 if(this.id){//修改
                     this.$http.put(`rest/ad/${this.id}`,this.model).then(res=>{

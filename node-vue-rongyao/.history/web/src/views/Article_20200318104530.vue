@@ -1,0 +1,31 @@
+<template>
+  <div class="page-article" v-if="model">
+    <div class="d-flex">
+      <div class="iconfont icon-Back">&lt;</div>
+      <div class="flex-1">{{model.title}}</div>
+      <div class="text-grey fs-xs">2020-03-17</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    id: { rquired: true }
+  },
+  data() {
+    return {
+      model: ""
+    };
+  },
+  created() {
+      this.fetch();
+  },
+  methods: {
+    async fetch() {
+      const res = await this.$http.get(`aeticles/${this.id}`);
+      this.model = res.data;
+    }
+  }
+};
+</script>
