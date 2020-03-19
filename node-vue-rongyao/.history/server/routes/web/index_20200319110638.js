@@ -141,7 +141,7 @@ module.exports = app => {
     //英雄详情
     router.get('/heroInfo/:id',async (req,res)=>{
         const data = await Hero.findById(req.params.id)
-                                .populate('categories')
+                                .populate('category')
                                 .lean()
         res.send(data)
     })

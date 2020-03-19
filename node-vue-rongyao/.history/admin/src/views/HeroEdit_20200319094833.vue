@@ -147,17 +147,17 @@
           <!-- 最佳搭档 start-->
           <el-tab-pane label="最佳搭档" name="partners">
             <el-button size="small" @click="model.partners.push({})">
-              <i class="el-icon-plus"></i>添加英雄
+              <i class="el-icon-plus"></i>添加搭档
             </el-button>
             <el-row type="flex" style="flex-wrap: wrap;">
               <el-col :md="12" v-for="(item,index) of model.partners" :key="index">
-                <el-form-item label="英雄">
-                  <el-select filterable v-model="item.hero">
+                <el-form-item label="逆风出装">
+                  <el-select v-model="model.items2" multiple>
                     <el-option
-                      v-for="hero of heroes"
-                      :key="hero._id"
-                      :label="hero.name"
-                      :value="hero._id"
+                      v-for="item of items"
+                      :key="item._id"
+                      :label="item.name"
+                      :value="item._id"
                     ></el-option>
                   </el-select>
                 </el-form-item>
@@ -191,10 +191,10 @@ export default {
         avatar: "",
         banner: "",
         scores: {
-            difficult: 0,
-            skills: 0,
-            attack: 0,
-            survive: 0
+          difficult: 0,
+          skills: 0,
+          attack: 0,
+          survive: 0
         },
         usageTips: "",
         battleTips: "",
@@ -202,15 +202,13 @@ export default {
         skills: [],
         partners: []
       },
-        categories: [],
-        items: [],
-        heroes: []
+      categories: [],
+      items: []
     };
   },
   created() {
     this.fetchCategories();
     this.fetchItems();
-    this.fetHeroes();
     this.id && this.fetch();
   },
   methods: {
@@ -243,10 +241,6 @@ export default {
           this.items = res.data;
         }
       });
-    },
-    async fetHeroes() {
-        const res = await this.$http.get("rest/hero");
-        this.heroes = res.data;
     },
     save() {
       if (this.id) {

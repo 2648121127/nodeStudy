@@ -10,11 +10,11 @@
     </div>
     <div class="top" :style="{'background-image':`url(${model.banner})`}">
       <div class="info text-white p-3 h-100 d-flex flex-column jc-end">
-        <div class="fs-sm">{{model.title}}</div>
+        <div>{{model.title}}</div>
         <h2 class="my-2">{{model.name}}</h2>
-        <div class="fs-sm">{{model.categories.map(v=>v.name).join('/')}}</div>
-        <div class="d-flex jc-between pt-2">
-          <div class="scores d-flex ai-center" v-if="model.scores">
+        <div>{{model.categories.map(v=>v.name).join('/')}}</div>
+        <div class="d-flex jc-between">
+          <div class="scores" v-if="model.scores">
             <span>难度</span>
             <span class="badge bg-primary">{{model.scores.difficult}}</span>
             <span>技能</span>
@@ -70,7 +70,7 @@ export default {
             display:inline-block;
             width:1rem;
             height:1rem;
-            line-height:1rem;
+            line-height:0.9rem;
             text-align: center;
             border-radius:50%;
             font-size:0.6rem;

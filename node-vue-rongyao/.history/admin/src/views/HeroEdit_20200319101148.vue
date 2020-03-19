@@ -151,8 +151,8 @@
             </el-button>
             <el-row type="flex" style="flex-wrap: wrap;">
               <el-col :md="12" v-for="(item,index) of model.partners" :key="index">
-                <el-form-item label="英雄">
-                  <el-select filterable v-model="item.hero">
+                <el-form-item filterable label="英雄">
+                  <el-select v-model="item.hero">
                     <el-option
                       v-for="hero of heroes"
                       :key="hero._id"

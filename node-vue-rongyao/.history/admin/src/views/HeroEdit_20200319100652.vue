@@ -152,7 +152,7 @@
             <el-row type="flex" style="flex-wrap: wrap;">
               <el-col :md="12" v-for="(item,index) of model.partners" :key="index">
                 <el-form-item label="英雄">
-                  <el-select filterable v-model="item.hero">
+                  <el-select v-model="item.hero">
                     <el-option
                       v-for="hero of heroes"
                       :key="hero._id"
@@ -210,7 +210,6 @@ export default {
   created() {
     this.fetchCategories();
     this.fetchItems();
-    this.fetHeroes();
     this.id && this.fetch();
   },
   methods: {
@@ -245,7 +244,7 @@ export default {
       });
     },
     async fetHeroes() {
-        const res = await this.$http.get("rest/hero");
+        const res = await this.$http.get("hero/list");
         this.heroes = res.data;
     },
     save() {

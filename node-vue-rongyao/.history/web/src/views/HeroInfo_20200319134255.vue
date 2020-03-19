@@ -1,0 +1,61 @@
+<template>
+  <div class="paage-hero">
+    <div class="topbar bg-black py-2 px-3 text-white d-flex ai-center">
+      <img src="../assets/logo.png" height="30" />
+      <div class="px-2 flex-1">
+        <span class="text-white">王者荣耀</span>
+        <span class="ml-2">攻略站</span>
+      </div>
+      <router-link tag="div" to="/">更多英雄 &gt;</router-link>
+    </div>
+    <div class="top" :style="{'background-image':`url(${model.banner})`}">
+        <div class="info text-white p-3">
+            <div>{{model.title}}</div>
+            <h2 class="my-2">{{model.name}}</h2>
+            <div>{{model.categories.map(v=>v.name).join('/')}}</div>
+            <div class="scores" v-if="model.scores">
+                <span>难度</span>
+                <span class="badge bg-primary">{{model.scores.difficult}}</span>
+                <span>技能</span>
+                <span class="badge bg-blue-1">{{model.scores.skills}}</span>
+                <span>攻击</span>
+                <span class="badge bg-danger">{{model.scores.attack}}</span>
+                <span>生存</span>
+                <span class="badge bg-dark">{{model.scores.survive}}</span>
+            </div>
+        </div>
+    </div>
+  </div>
+</template> 
+
+<script>
+export default {
+  props: {
+    id: { rquired: true }
+  },
+  data() {
+    return {
+      model: null
+    };
+  },
+  methods: {
+    async fetch() {
+      const res = await this.$http.get(`heroInfo/${this.id}`);
+      this.model = res.data;
+    }
+  },
+  created() {
+    this.fetch();
+  }
+};
+</script>
+
+<style lang="scss">
+.paage-hero{
+    .top{
+        height:50vw;
+        background: #fff no-repeat top center;
+        background-size:auto 100%;
+    }
+}
+</style>

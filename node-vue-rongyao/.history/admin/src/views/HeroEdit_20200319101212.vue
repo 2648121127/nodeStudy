@@ -73,7 +73,7 @@
               ></el-rate>
             </el-form-item>
             <el-form-item label="顺风出装">
-              <el-select v-model="model.items1" multiple>
+              <el-select v-model="model.items1" filterable multiple>
                 <el-option
                   v-for="item of items"
                   :key="item._id"
@@ -83,7 +83,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="逆风出装">
-              <el-select v-model="model.items2" multiple>
+              <el-select v-model="model.items2" filterable multiple>
                 <el-option
                   v-for="item of items"
                   :key="item._id"
@@ -151,8 +151,8 @@
             </el-button>
             <el-row type="flex" style="flex-wrap: wrap;">
               <el-col :md="12" v-for="(item,index) of model.partners" :key="index">
-                <el-form-item label="英雄">
-                  <el-select filterable v-model="item.hero">
+                <el-form-item filterable label="英雄">
+                  <el-select v-model="item.hero">
                     <el-option
                       v-for="hero of heroes"
                       :key="hero._id"
