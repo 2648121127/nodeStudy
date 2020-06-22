@@ -38,7 +38,7 @@ const routes = [
     path: '/markdown/:id/edit',
     name: 'markdown-edit',
     component: resolve => require(['../views/MarkdownEdit.vue'],resolve)
-  }
+  },
 ]
 
 const router = new VueRouter({

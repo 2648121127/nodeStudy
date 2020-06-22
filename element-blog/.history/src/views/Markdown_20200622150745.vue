@@ -28,10 +28,7 @@
 export default {
   data() {
     return {
-      markdown:{
-        title:'',
-        body:''
-      }
+      markdown: ""
     };
   },
   created() {
@@ -42,14 +39,18 @@ export default {
       console.log(this.markdown);
     },
     commitMarkdown() {
-      this.$http.post("markdown", this.markdown).then(res => {
+      console.log(this.markdown);
+      let params = {
+        markdown: this.markdown
+      };
+      this.$http.post("markdown", params).then(res => {
         console.log(res);
         this.$message({
           message: "markdown提交成功！",
           type: "success"
         });
       });
-      this.$router.push("/markdown/list");
+      this.$router.push("/acticle/index");
     }
   }
 };

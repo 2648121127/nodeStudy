@@ -9,7 +9,7 @@
               <el-menu-item index="/acticle/index">文章列表</el-menu-item>
               <el-menu-item index="/acticle/create">新建文章</el-menu-item>
               <el-menu-item index="/markdown/create">markdownCreate</el-menu-item>
-              <el-menu-item index="/markdown/list">markdownList</el-menu-item>
+              <el-menu-item index="/markdown/list">markdownlist</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

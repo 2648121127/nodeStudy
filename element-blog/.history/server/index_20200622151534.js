@@ -85,12 +85,6 @@ app.get('/api/markdown/:id', async (req, res) => {
     const markdown = await Markdown.findById(req.params.id);
     res.send(markdown);
 })
-//修改Markdown
-app.put('/api/markdown/:id', async (req, res) => {
-    console.log(req.body)
-    const markdown = await Markdown.findByIdAndUpdate(req.params.id, req.body);
-    res.send(markdown);
-})
 
 app.listen(3001, () => {
     console.log('http://localhost:3001启动成功！')

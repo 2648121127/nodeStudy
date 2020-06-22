@@ -68,28 +68,22 @@ app.post('/api/markdown', async (req, res) => {
     res.send(markdown);
 })
 //Markdown列表
-app.get('/api/markdown', async (req, res) => {
-    const markdown = await Markdown.find();
-    res.send(markdown);
+app.get('/api/acticle', async (req, res) => {
+    const acticle = await Acticle.find();
+    res.send(acticle);
 })
 
 //删除Markdown
-app.delete('/api/markdown/:id', async (req, res) => {
-    await Markdown.findByIdAndDelete(req.params.id);
+app.delete('/api/acticle/:id', async (req, res) => {
+    await Acticle.findByIdAndDelete(req.params.id);
     res.send({
         status: true
     })
 })
 //Markdown详情
-app.get('/api/markdown/:id', async (req, res) => {
-    const markdown = await Markdown.findById(req.params.id);
-    res.send(markdown);
-})
-//修改Markdown
-app.put('/api/markdown/:id', async (req, res) => {
-    console.log(req.body)
-    const markdown = await Markdown.findByIdAndUpdate(req.params.id, req.body);
-    res.send(markdown);
+app.get('/api/acticle/:id', async (req, res) => {
+    const acticle = await Acticle.findById(req.params.id);
+    res.send(acticle);
 })
 
 app.listen(3001, () => {

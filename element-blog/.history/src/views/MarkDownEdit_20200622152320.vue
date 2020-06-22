@@ -18,7 +18,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="cansole">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -35,20 +35,28 @@ export default {
     };
   },
   created() {
-    this.getMarkdown();
+    this.getDetail();
   },
   methods: {
-    getMarkdown() {
-      console.log(this.markdown);
+    getDetail() {
+      // console.log(this.$route)
+      this.$http.get(`markdown/${this.$route.params.id}`).then(res => {
+        console.log(res.data);
+        this.acticle = res.data;
+      });
     },
     commitMarkdown() {
-      this.$http.post("markdown", this.markdown).then(res => {
-        console.log(res);
-        this.$message({
-          message: "markdown提交成功！",
-          type: "success"
+      this.$http.put(`markdown/${this.$route.params.id}`, this.acticle).then(res => {
+          console.log(res);
+          this.$message({
+            message: "markdown更新成功！",
+            type: "success"
+          });
+          this.$router.push("/markdown/list");
+          //this.$router.push({path: 'device_goods', query: {id: row.id}})
         });
-      });
+    },
+    cansole() {
       this.$router.push("/markdown/list");
     }
   }

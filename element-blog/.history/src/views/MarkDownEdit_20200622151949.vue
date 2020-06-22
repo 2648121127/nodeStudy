@@ -49,7 +49,7 @@ export default {
           type: "success"
         });
       });
-      this.$router.push("/markdown/list");
+      this.$router.push("/acticle/index");
     }
   }
 };

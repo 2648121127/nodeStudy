@@ -38,18 +38,26 @@ export default {
     this.getMarkdown();
   },
   methods: {
-    getMarkdown() {
-      console.log(this.markdown);
-    },
-    commitMarkdown() {
-      this.$http.post("markdown", this.markdown).then(res => {
-        console.log(res);
-        this.$message({
-          message: "markdown提交成功！",
-          type: "success"
-        });
+    getDetail() {
+      // console.log(this.$route)
+      this.$http.get(`acticle/${this.$route.params.id}`).then(res => {
+        console.log(res.data);
+        this.acticle = res.data;
       });
-      this.$router.push("/markdown/list");
+    },
+    saveActicle() {
+      this.$http.put(`acticle/${this.$route.params.id}`, this.acticle).then(res => {
+          console.log(res);
+          this.$message({
+            message: "文章更新成功！",
+            type: "success"
+          });
+          this.$router.push("/acticle/index");
+          //this.$router.push({path: 'device_goods', query: {id: row.id}})
+        });
+    },
+    cansole() {
+      this.$router.push("/acticle/index");
     }
   }
 };

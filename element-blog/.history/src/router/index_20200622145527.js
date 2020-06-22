@@ -33,11 +33,6 @@ const routes = [
     path: '/markdown/list',
     name: 'markdown-list',
     component: resolve => require(['../views/MarkdownList.vue'], resolve)
-  },
-  {
-    path: '/markdown/:id/edit',
-    name: 'markdown-edit',
-    component: resolve => require(['../views/MarkdownEdit.vue'],resolve)
   }
 ]
 
