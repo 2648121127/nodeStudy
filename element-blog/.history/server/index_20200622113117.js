@@ -46,6 +46,7 @@ app.delete('/api/acticle/:id',async (req,res)=>{
 })
 //文章详情
 app.get('/api/acticle/:id',async (req,res)=>{
+    console.log(Acticle.findById(req.params.id))
     const acticle = await Acticle.findById(req.params.id);
     res.send(acticle);
 })
@@ -53,7 +54,7 @@ app.get('/api/acticle/:id',async (req,res)=>{
 //修改文章
 app.put('/api/acticle/:id',async (req,res)=>{
     console.log(req.body)
-    const acticle = await Acticle.findByIdAndUpdate(req.params.id,req.body);
+    const acticle = await Acticle.findById(req.params.id,req.body);
     res.send(acticle);
 })
 

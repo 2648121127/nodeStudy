@@ -35,14 +35,15 @@ export default {
       })
     },
     edit(id){
+      console.log(id)
       this.$router.push(`/acticle/${id}/edit`).then(res=>{
-        // console.log(res)
+        console.log(res)
       })
     },
     remove(id){
       // 因为后端用的是delete，所以这里也要一样
       this.$http.delete(`/acticle/${id}`).then(res=>{
-        // console.log(res);
+        console.log(res);
         this.$message({
               message: '删除成功！',
               type: 'success'

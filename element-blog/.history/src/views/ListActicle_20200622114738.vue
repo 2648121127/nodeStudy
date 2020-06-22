@@ -35,8 +35,9 @@ export default {
       })
     },
     edit(id){
+      console.log(id)
       this.$router.push(`/acticle/${id}/edit`).then(res=>{
-        // console.log(res)
+        console.log(res)
       })
     },
     remove(id){

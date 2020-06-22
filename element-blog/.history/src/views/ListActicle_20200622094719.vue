@@ -29,20 +29,20 @@ export default {
   },
   methods: {
     getActicle(){
-      this.$http.get('/acticle').then(res=>{
-        // console.log(res)
+      this.$http.get('acticle').then(res=>{
+        console.log(res)
         this.acticleData = res.data;
       })
     },
     edit(id){
-      this.$router.push(`/acticle/${id}/edit`).then(res=>{
-        // console.log(res)
+      this.$router.push(`/${id}/edit`).then(res=>{
+        console.log(res)
       })
     },
     remove(id){
       // 因为后端用的是delete，所以这里也要一样
-      this.$http.delete(`/acticle/${id}`).then(res=>{
-        // console.log(res);
+      this.$http.delete(`acticle/${id}`).then(res=>{
+        console.log(res);
         this.$message({
               message: '删除成功！',
               type: 'success'

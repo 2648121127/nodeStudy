@@ -51,9 +51,9 @@ app.get('/api/acticle/:id',async (req,res)=>{
 })
 
 //修改文章
-app.put('/api/acticle/:id',async (req,res)=>{
+app.get('/api/acticle/:id',async (req,res)=>{
     console.log(req.body)
-    const acticle = await Acticle.findByIdAndUpdate(req.params.id,req.body);
+    const acticle = await Acticle.findById(req.params.id,req.body);
     res.send(acticle);
 })
 

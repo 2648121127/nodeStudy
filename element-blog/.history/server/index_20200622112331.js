@@ -8,7 +8,7 @@ app.use(express.json()); //让express识别客户端传过来的json
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/element-blog',{ //链接数据库，elment-blog为名字，没有就创建，有就链接
+mongoose.connect('mongodb://localhost:27018/element-blog',{ //链接数据库，elment-blog为名字，没有就创建，有就链接
     useNewUrlParser:true,    //这三个数是防止数据库报错的
     useFindAndModify:true,
     useCreateIndex:true,
@@ -46,14 +46,15 @@ app.delete('/api/acticle/:id',async (req,res)=>{
 })
 //文章详情
 app.get('/api/acticle/:id',async (req,res)=>{
-    const acticle = await Acticle.findById(req.params.id);
+    console.log(Acticle.findById(req.params.id))
+    const acticle = Acticle.findById(req.params.id);
     res.send(acticle);
 })
 
 //修改文章
 app.put('/api/acticle/:id',async (req,res)=>{
-    console.log(req.body)
-    const acticle = await Acticle.findByIdAndUpdate(req.params.id,req.body);
+    console.log(req.params)
+    const acticle = Acticle.findById(req.params.id,req.body);
     res.send(acticle);
 })
 

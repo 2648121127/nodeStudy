@@ -35,7 +35,8 @@ export default {
       });
     },
     saveActicle() {
-      this.$http.put(`acticle/${this.$route.params.id}`, this.acticle).then(res => {
+      console.log(this.acticle)
+      this.$http.get(`acticle/${this.$route.params.id}`, this.acticle).then(res => {
           console.log(res);
           this.$message({
             message: "文章更新成功！",

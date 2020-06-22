@@ -38,7 +38,7 @@ app.get('/api/acticle',async (req,res)=>{
 })
 
 //删除
-app.delete('/api/acticle/:id',async (req,res)=>{
+app.delete('api/acticle/:id',async (req,res)=>{
     await Acticle.findByIdAndDelete(req.params.id);
     res.send({
         status:true
@@ -46,14 +46,14 @@ app.delete('/api/acticle/:id',async (req,res)=>{
 })
 //文章详情
 app.get('/api/acticle/:id',async (req,res)=>{
-    const acticle = await Acticle.findById(req.params.id);
+    const acticle = Acticle.findById(req.params.id);
     res.send(acticle);
 })
 
 //修改文章
 app.put('/api/acticle/:id',async (req,res)=>{
-    console.log(req.body)
-    const acticle = await Acticle.findByIdAndUpdate(req.params.id,req.body);
+    console.log(req.params)
+    const acticle = Acticle.findById(req.params.id,req.body);
     res.send(acticle);
 })
 
